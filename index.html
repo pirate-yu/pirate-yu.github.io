@@ -1,10 +1,98 @@
 <!DOCTYPE html>
-<html lang="en">
+<html ng-app="sidenavDemo1">
+
 <head>
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
   <meta charset="UTF-8">
-  <title>ToCss</title>
+  <link rel="stylesheet" href="tool/material/angular-material.min.css">
 </head>
-<body>
-  <h1>小贱人</h1>
+
+<body layout="column" ng-controller="AppCtrl">
+  <section layout="row" flex>
+    <md-sidenav layout="column" class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
+      <md-toolbar class="md-theme-indigo">
+        <h1 class="md-toolbar-tools">Hello Angular</h1>
+      </md-toolbar>
+      <md-content layout-padding ng-controller="LeftCtrl">
+        <md-button ng-click="close()" class="md-primary" hide-gt-md>
+          Close Sidenav Left
+        </md-button>
+        <p>
+          This sidenav is locked open on your device. To go back to the default behavior, narrow your display.
+        </p>
+      </md-content>
+    </md-sidenav>
+    <md-content layout="column" flex>
+      <md-toolbar layout="row" class="md-whiteframe-z1">
+        <div class="md-toolbar-tools">
+          <md-button ng-click="toggleLeft()" hide-gt-md class="md-icon-button">
+            <md-icon aria-label="Menu" md-svg-icon="src/img/icons/menu.svg"></md-icon>
+          </md-button>
+          <h5>Sidenav Left</h5>
+        </div>
+      </md-toolbar>
+      <div layout="column" layout-padding layout-align="top center">
+        <p>
+          The left sidenav will 'lock open' on a medium (>=960px wide) device.
+        </p>
+        
+        <div ng-controller="MyBottom">
+          <md-button ng-click="openBottomSheet()">
+            Open a Bottom Sheet!
+          </md-button>
+        </div>
+        <md-divider></md-divider>
+        <div>
+          <md-button ng-click="toggleLeft()" class="md-primary" hide-gt-md>
+            Toggle left
+          </md-button>
+        </div>
+      </div>
+    </md-content>
+  </section>
+
+  <script src="tool/angular1.4.5/angular.min.js"></script>
+  <script src="tool/angular1.4.5/angular-aria.min.js"></script>
+  <script src="tool/angular1.4.5/angular-animate.min.js"></script>
+  <script src="tool/material/angular-material.min.js"></script>
+  <script>
+    angular
+      .module('sidenavDemo1', ['ngMaterial', 'ngAnimate'])
+      .controller('AppCtrl', function ($scope, $timeout, $mdSidenav, $mdUtil, $log) {
+        $scope.toggleLeft = buildToggler('left');
+        /**
+         * Build handler to open/close a SideNav; when animation finishes
+         * report completion in console
+         */
+        function buildToggler(navID) {
+          var debounceFn = $mdUtil.debounce(function () {
+            $mdSidenav(navID)
+              .toggle()
+              .then(function () {
+                $log.debug("toggle " + navID + " is done");
+              });
+          }, 200);
+          return debounceFn;
+        }
+      })
+      .controller('LeftCtrl', function ($scope, $timeout, $mdSidenav, $log) {
+        $scope.close = function () {
+          $mdSidenav('left').close()
+            .then(function () {
+              $log.debug("close LEFT is done");
+            });
+        };
+      }).controller('MyBottom', function($scope, $mdBottomSheet) {
+  $scope.openBottomSheet = function() {
+    $mdBottomSheet.show({
+      template: '<md-bottom-sheet>Hello!</md-bottom-sheet>'
+    });
+  };
+});
+    
+        
+  </script>
+
 </body>
+
 </html>
