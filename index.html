@@ -8,7 +8,8 @@
 		body {
 			background-color: #f2f1ee;
 			font-family: "Microsoft Yahei", sans-serif, Roboto, arial, "Hiragino Sans GB";
-		}	
+		}
+		
 		.myChart {
 			margin: 0 auto;
 			width: 1050px;
@@ -23,16 +24,22 @@
 <body>
 	<div style="width:100%">
 		<div class="myChart">
-			<h1>午间讲盘点击率</h1>
+			<h1>12月午间讲盘点击率</h1>
 			<div>
-				<canvas id="canvas" height="630" width="1050"></canvas>
+				<canvas id="canvas2" height="630" width="1050"></canvas>
+			</div>
+		</div>
+		<div class="myChart">
+			<h1>11月午间讲盘点击率</h1>
+			<div>
+				<canvas id="canvas1" height="630" width="1050"></canvas>
 			</div>
 		</div>
 	</div>
-<script type="text/javascript" src="http://s0.caigengtan.com/campaign/2014/dianji_data/day.js"></script>
+	<script type="text/javascript" src="http://s0.caigengtan.com/campaign/2014/dianji_data/day.js"></script>
 	<script>
-		var lineChartData = {
-			labels: my_data.day,
+		var lineChartData1 = {
+			labels: my_data.data_1511.day,
 			datasets: [
 				{
 					label: "My Second dataset",
@@ -42,14 +49,34 @@
 					pointStrokeColor: "#fff",
 					pointHighlightFill: "#fff",
 					pointHighlightStroke: "rgba(151,187,205,1)",
-					data:  my_data.liang
+					data: my_data.data_1511.liang
+				}
+			]
+		};
+
+		var lineChartData2 = {
+			labels: my_data.data_1512.day,
+			datasets: [
+				{
+					label: "My Second dataset",
+					fillColor: "rgba(151,187,205,0.2)",
+					strokeColor: "rgba(151,187,205,1)",
+					pointColor: "rgba(151,187,205,1)",
+					pointStrokeColor: "#fff",
+					pointHighlightFill: "#fff",
+					pointHighlightStroke: "rgba(151,187,205,1)",
+					data: my_data.data_1512.liang
 				}
 			]
 		};
 
 		window.onload = function () {
-			var ctx = document.getElementById("canvas").getContext("2d");
-			window.myLine = new Chart(ctx).Line(lineChartData, {
+			var ctx = document.getElementById("canvas1").getContext("2d");
+			window.myLine = new Chart(ctx).Line(lineChartData1, {
+				responsive: true
+			});
+			var ctx = document.getElementById("canvas2").getContext("2d");
+			window.myLine = new Chart(ctx).Line(lineChartData2, {
 				responsive: true
 			});
 		}
