@@ -26,6 +26,12 @@
 		<div class="myChart">
 			<h1>02月午间讲盘点击率</h1>
 			<div>
+				<canvas id="canvas5" height="630" width="1050"></canvas>
+			</div>
+		</div>
+		<div class="myChart">
+			<h1>02月午间讲盘点击率</h1>
+			<div>
 				<canvas id="canvas4" height="630" width="1050"></canvas>
 			</div>
 		</div>
@@ -113,6 +119,22 @@
 			]
 		};
 
+		var lineChartData5 = {
+			labels: my_data.data_1603.day,
+			datasets: [
+				{
+					label: "My Second dataset",
+					fillColor: "rgba(151,187,205,0.2)",
+					strokeColor: "rgba(151,187,205,1)",
+					pointColor: "rgba(151,187,205,1)",
+					pointStrokeColor: "#fff",
+					pointHighlightFill: "#fff",
+					pointHighlightStroke: "rgba(151,187,205,1)",
+					data: my_data.data_1603.liang
+				}
+			]
+		};
+
 		window.onload = function () {
 			var ctx = document.getElementById("canvas1").getContext("2d");
 			window.myLine = new Chart(ctx).Line(lineChartData1, {
@@ -128,6 +150,10 @@
 			});
 			var ctx = document.getElementById("canvas4").getContext("2d");
 			window.myLine = new Chart(ctx).Line(lineChartData4, {
+				responsive: true
+			});
+			var ctx = document.getElementById("canvas5").getContext("2d");
+			window.myLine = new Chart(ctx).Line(lineChartData5, {
 				responsive: true
 			});
 		}
