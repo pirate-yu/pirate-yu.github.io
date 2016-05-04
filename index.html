@@ -4,6 +4,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>午间讲盘点击率</title>
+	<link rel="stylesheet" href="swiper.min.css">
 	<style>
 		body {
 			background-color: #f2f1ee;
@@ -17,49 +18,70 @@
 			background-color: #fff;
 			box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 		}
+	.swiper-container-horizontal>.swiper-scrollbar {
+			top: 800px;
+			height: 10px;
+		
+		}
+		.swiper-button-prev{
+			left: 50%;
+			margin-left: -100px;
+			top: 840px;
+		}
+		.swiper-button-next{
+			top: 840px;
+				right: 50%;
+			margin-right: -100px;
+		}
 	</style>
 	<script src="Chart.min.js"></script>
 </head>
 
-<body>
-	<div style="width:100%">
-		<div class="myChart">
+<body class="swiper-container">
+
+	<div style="width:100%" class="swiper-wrapper">
+		<div class="myChart swiper-slide">
 			<h1>04月午间讲盘点击率</h1>
 			<div>
 				<canvas id="canvas6" height="630" width="1050"></canvas>
 			</div>
 		</div>
-		<div class="myChart">
+		<div class="myChart swiper-slide">
 			<h1>03月午间讲盘点击率</h1>
 			<div>
 				<canvas id="canvas5" height="630" width="1050"></canvas>
 			</div>
 		</div>
-		<div class="myChart">
+		<div class="myChart swiper-slide">
 			<h1>02月午间讲盘点击率</h1>
 			<div>
 				<canvas id="canvas4" height="630" width="1050"></canvas>
 			</div>
 		</div>
-		<div class="myChart">
+		<div class="myChart swiper-slide">
 			<h1>01月午间讲盘点击率</h1>
 			<div>
 				<canvas id="canvas3" height="630" width="1050"></canvas>
 			</div>
 		</div>
-		<div class="myChart">
+		<div class="myChart swiper-slide">
 			<h1>12月午间讲盘点击率</h1>
 			<div>
 				<canvas id="canvas2" height="630" width="1050"></canvas>
 			</div>
 		</div>
-		<div class="myChart">
+		<div class="myChart swiper-slide">
 			<h1>11月午间讲盘点击率</h1>
 			<div>
 				<canvas id="canvas1" height="630" width="1050"></canvas>
 			</div>
 		</div>
+		
 	</div>
+	 <div class="swiper-scrollbar"></div>
+	<div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+	
 	<script type="text/javascript" src="http://s0.caigengtan.com/campaign/2014/dianji_data/day.js"></script>
 	<script>
 		var lineChartData1 = {
@@ -184,6 +206,29 @@
 			});
 		}
 	</script>
+	<script src="swiper.min.js"></script>
+	<script>
+    var swiper = new Swiper('.swiper-container', {
+				prevButton:'.swiper-button-prev',
+				nextButton:'.swiper-button-next',
+        pagination: '.swiper-pagination',
+        effect: 'coverflow',
+        grabCursor: true,
+        centeredSlides: true,
+        slidesPerView: 'auto',
+        coverflow: {
+            rotate: 50,
+            stretch: 0,
+            depth: 100,
+            modifier: 1,
+            slideShadows : true
+        },
+			scrollbar:'.swiper-scrollbar',
+				scrollbarHide : false,
+				scrollbarDraggable : true ,
+				scrollbarSnapOnRelease : true ,
+    });
+    </script>
 </body>
 
 </html>
