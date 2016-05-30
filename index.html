@@ -1,234 +1,81 @@
 <!DOCTYPE html>
 <html lang="zh">
-
 <head>
 	<meta charset="UTF-8">
 	<title>午间讲盘点击率</title>
-	<link rel="stylesheet" href="swiper.min.css">
 	<style>
 		body {
 			background-color: #f2f1ee;
 			font-family: "Microsoft Yahei", sans-serif, Roboto, arial, "Hiragino Sans GB";
 		}
-		
-		.myChart {
+		#myChart {
 			margin: 0 auto;
-			width: 1050px;
+			width: 1090px;
 			padding: 20px;
 			background-color: #fff;
 			box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+			padding: 0 20px;
 		}
-	.swiper-container-horizontal>.swiper-scrollbar {
-			top: 800px;
-			height: 10px;
-		
+		.box {
+			border-bottom: 1px solid #ededed;
+			padding: 10px 0 30px;
 		}
-		.swiper-button-prev{
-			left: 50%;
-			margin-left: -100px;
-			top: 840px;
+		small {
+			margin-left: 10px;
+			color: #666;
+			font-weight: normal;
 		}
-		.swiper-button-next{
-			top: 840px;
-				right: 50%;
-			margin-right: -100px;
+		h1 {
+			letter-spacing: 1.5px;
 		}
 	</style>
 	<script src="Chart.min.js"></script>
 </head>
-
-<body class="swiper-container">
-
-	<div style="width:100%" class="swiper-wrapper">
-		<div class="myChart swiper-slide">
-			<h1>04月午间讲盘点击率</h1>
-			<div>
-				<canvas id="canvas6" height="630" width="1050"></canvas>
-			</div>
-		</div>
-		<div class="myChart swiper-slide">
-			<h1>03月午间讲盘点击率</h1>
-			<div>
-				<canvas id="canvas5" height="630" width="1050"></canvas>
-			</div>
-		</div>
-		<div class="myChart swiper-slide">
-			<h1>02月午间讲盘点击率</h1>
-			<div>
-				<canvas id="canvas4" height="630" width="1050"></canvas>
-			</div>
-		</div>
-		<div class="myChart swiper-slide">
-			<h1>01月午间讲盘点击率</h1>
-			<div>
-				<canvas id="canvas3" height="630" width="1050"></canvas>
-			</div>
-		</div>
-		<div class="myChart swiper-slide">
-			<h1>12月午间讲盘点击率</h1>
-			<div>
-				<canvas id="canvas2" height="630" width="1050"></canvas>
-			</div>
-		</div>
-		<div class="myChart swiper-slide">
-			<h1>11月午间讲盘点击率</h1>
-			<div>
-				<canvas id="canvas1" height="630" width="1050"></canvas>
-			</div>
-		</div>
-		
+<body>
+	<div id='myChart'>
 	</div>
-	 <div class="swiper-scrollbar"></div>
-	<div class="swiper-button-prev"></div>
-    <div class="swiper-button-next"></div>
-	
 	<script type="text/javascript" src="http://s0.caigengtan.com/campaign/2014/dianji_data/day.js"></script>
 	<script>
-		var lineChartData1 = {
-			labels: my_data.data_1511.day,
-			datasets: [
-				{
-					label: "My Second dataset",
-					fillColor: "rgba(151,187,205,0.2)",
-					strokeColor: "rgba(151,187,205,1)",
-					pointColor: "rgba(151,187,205,1)",
-					pointStrokeColor: "#fff",
-					pointHighlightFill: "#fff",
-					pointHighlightStroke: "rgba(151,187,205,1)",
-					data: my_data.data_1511.liang
-				}
-			]
-		};
-
-		var lineChartData2 = {
-			labels: my_data.data_1512.day,
-			datasets: [
-				{
-					label: "My Second dataset",
-					fillColor: "rgba(151,187,205,0.2)",
-					strokeColor: "rgba(151,187,205,1)",
-					pointColor: "rgba(151,187,205,1)",
-					pointStrokeColor: "#fff",
-					pointHighlightFill: "#fff",
-					pointHighlightStroke: "rgba(151,187,205,1)",
-					data: my_data.data_1512.liang
-				}
-			]
-		};
-		var lineChartData3 = {
-			labels: my_data.data_1601.day,
-			datasets: [
-				{
-					label: "My Second dataset",
-					fillColor: "rgba(151,187,205,0.2)",
-					strokeColor: "rgba(151,187,205,1)",
-					pointColor: "rgba(151,187,205,1)",
-					pointStrokeColor: "#fff",
-					pointHighlightFill: "#fff",
-					pointHighlightStroke: "rgba(151,187,205,1)",
-					data: my_data.data_1601.liang
-				}
-			]
-		};
-
-		var lineChartData4 = {
-			labels: my_data.data_1602.day,
-			datasets: [
-				{
-					label: "My Second dataset",
-					fillColor: "rgba(151,187,205,0.2)",
-					strokeColor: "rgba(151,187,205,1)",
-					pointColor: "rgba(151,187,205,1)",
-					pointStrokeColor: "#fff",
-					pointHighlightFill: "#fff",
-					pointHighlightStroke: "rgba(151,187,205,1)",
-					data: my_data.data_1602.liang
-				}
-			]
-		};
-
-		var lineChartData5 = {
-			labels: my_data.data_1603.day,
-			datasets: [
-				{
-					label: "My Second dataset",
-					fillColor: "rgba(151,187,205,0.2)",
-					strokeColor: "rgba(151,187,205,1)",
-					pointColor: "rgba(151,187,205,1)",
-					pointStrokeColor: "#fff",
-					pointHighlightFill: "#fff",
-					pointHighlightStroke: "rgba(151,187,205,1)",
-					data: my_data.data_1603.liang
-				}
-			]
-		};
-
-		var lineChartData6 = {
-			labels: my_data.data_1604.day,
-			datasets: [
-				{
-					label: "My Second dataset",
-					fillColor: "rgba(151,187,205,0.2)",
-					strokeColor: "rgba(151,187,205,1)",
-					pointColor: "rgba(151,187,205,1)",
-					pointStrokeColor: "#fff",
-					pointHighlightFill: "#fff",
-					pointHighlightStroke: "rgba(151,187,205,1)",
-					data: my_data.data_1604.liang
-				}
-			]
-		};
-
-		window.onload = function () {
-			var ctx = document.getElementById("canvas1").getContext("2d");
-			window.myLine = new Chart(ctx).Line(lineChartData1, {
-				responsive: true
-			});
-			var ctx = document.getElementById("canvas2").getContext("2d");
-			window.myLine = new Chart(ctx).Line(lineChartData2, {
-				responsive: true
-			});
-			var ctx = document.getElementById("canvas3").getContext("2d");
-			window.myLine = new Chart(ctx).Line(lineChartData3, {
-				responsive: true
-			});
-			var ctx = document.getElementById("canvas4").getContext("2d");
-			window.myLine = new Chart(ctx).Line(lineChartData4, {
-				responsive: true
-			});
-			var ctx = document.getElementById("canvas5").getContext("2d");
-			window.myLine = new Chart(ctx).Line(lineChartData5, {
-				responsive: true
-			});
-			var ctx = document.getElementById("canvas6").getContext("2d");
-			window.myLine = new Chart(ctx).Line(lineChartData6, {
+		var myData = function () {
+			var dataBox = [];
+			for (var data_name in my_data) {
+				dataBox.push(data_name)
+			}
+			return dataBox;
+		}().reverse();
+		var boody = document.getElementById('myChart');
+		var myChart = function (id, day, liang, title) {
+			var lineChartData = {
+				labels: day,
+				datasets: [
+					{
+						label: "My Second dataset",
+						fillColor: "rgba(151,187,205,0.2)",
+						strokeColor: "rgba(151,187,205,1)",
+						pointColor: "rgba(151,187,205,1)",
+						pointStrokeColor: "#fff",
+						pointHighlightFill: "#fff",
+						pointHighlightStroke: "rgba(151,187,205,1)",
+						data: liang
+					}
+				]
+			}
+			var box = document.createElement('div');
+			var tH1 = document.createElement('h1');
+			var srCanvas = document.createElement('canvas');
+			box.className = 'box'
+			tH1.innerHTML = title.toString().slice(5) + '月<small>午间讲盘点击率</small>';
+			box.appendChild(tH1)
+			box.appendChild(srCanvas);
+			boody.appendChild(box);
+			var ctx = srCanvas.getContext("2d");
+			window.myLine = new Chart(ctx).Line(lineChartData, {
 				responsive: true
 			});
 		}
+		for (var i = 0; i < myData.length; i++) {
+			var ssddf = myChart(i, my_data[myData[i]].day, my_data[myData[i]].liang, myData[i])
+		}
 	</script>
-	<script src="swiper.min.js"></script>
-	<script>
-    var swiper = new Swiper('.swiper-container', {
-				prevButton:'.swiper-button-prev',
-				nextButton:'.swiper-button-next',
-        pagination: '.swiper-pagination',
-        effect: 'coverflow',
-        grabCursor: true,
-        centeredSlides: true,
-        slidesPerView: 'auto',
-        coverflow: {
-            rotate: 50,
-            stretch: 0,
-            depth: 100,
-            modifier: 1,
-            slideShadows : true
-        },
-			scrollbar:'.swiper-scrollbar',
-				scrollbarHide : false,
-				scrollbarDraggable : true ,
-				scrollbarSnapOnRelease : true ,
-    });
-    </script>
 </body>
-
 </html>
