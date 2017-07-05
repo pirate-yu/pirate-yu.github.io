@@ -2,7 +2,7 @@
 <html lang="zh">
 <head>
 	<meta charset="UTF-8">
-	<title>午间讲盘点击率</title>
+	<title>微博点击率</title>
 	<style>
 		body {
 			background-color: #f2f1ee;
@@ -54,10 +54,10 @@
 <body>
 	<div id='myChart'>
 		<div class="btn_top">
-			<a class="active" href="http://tocss.com/">财耕谈</a><a href="http://tocss.com/weibo.html">微博</a>
+			<a href="http://tocss.com/">财耕谈</a><a class="active" href="http://tocss.com/weibo.html">微博</a>
 		</div>
 	</div>
-	<script type="text/javascript" src="http://s0.caigengtan.com/campaign/2014/dianji_data/day.js"></script>
+	<script type="text/javascript" src="http://s0.caigengtan.com/campaign/2014/dianji_data/weibo.js"></script>
 	<script>
 		var myData = function () {
 			var dataBox = [];
@@ -87,7 +87,7 @@
 			var tH1 = document.createElement('h1');
 			var srCanvas = document.createElement('canvas');
 			box.className = 'box'
-			tH1.innerHTML = title.toString().slice(5) + '月<small>午间讲盘点击率</small>';
+			tH1.innerHTML = title.toString().slice(5) + '月<small>微博视频播放量</small>';
 			box.appendChild(tH1)
 			box.appendChild(srCanvas);
 			boody.appendChild(box);
