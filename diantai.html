@@ -54,10 +54,10 @@
 <body>
 	<div id='myChart'>
 		<div class="btn_top">
-			<a href="http://tocss.com/">财耕谈</a><a class="active" href="http://tocss.com/weibo.html">微博</a>
+			<a href="http://tocss.com/">麦论讲股</a><a class="active" href="http://tocss.com/diantai.html">电台</a><a href="http://tocss.com/bofang.html">播放人数</a>
 		</div>
 	</div>
-	<script type="text/javascript" src="http://s0.caigengtan.com/campaign/2014/dianji_data/weibo.js"></script>
+	<script type="text/javascript" src="http://s0.caigengtan.com/campaign/2014/dianji_data/diantai.js"></script>
 	<script>
 		var myData = function () {
 			var dataBox = [];
@@ -67,27 +67,56 @@
 			return dataBox;
 		}().reverse();
 		var boody = document.getElementById('myChart');
-		var myChart = function (id, day, liang, title) {
-			var lineChartData = {
-				labels: day,
-				datasets: [
-					{
-						label: "My Second dataset",
-						fillColor: "rgba(151,187,205,0.2)",
-						strokeColor: "rgba(151,187,205,1)",
-						pointColor: "rgba(151,187,205,1)",
-						pointStrokeColor: "#fff",
-						pointHighlightFill: "#fff",
-						pointHighlightStroke: "rgba(151,187,205,1)",
-						data: liang
+		var myChart = function (id, day, liang, title, liang2) {
+			if (liang2) {
+				var lineChartData = {
+					labels: day,
+					datasets: [
+						{
+							label: "My Second dataset",
+							fillColor: "rgba(151,187,205,0.2)",
+							strokeColor: "rgba(151,187,205,1)",
+							pointColor: "rgba(151,187,205,1)",
+							pointStrokeColor: "#fff",
+							pointHighlightFill: "#fff",
+							pointHighlightStroke: "rgba(151,187,205,1)",
+							data: liang
+					},
+
+						{
+							label: "My First dataset",
+            fillColor: "rgba(220,220,220,0.2)",
+            strokeColor: "rgba(220,220,220,1)",
+            pointColor: "rgba(220,220,220,1)",
+            pointStrokeColor: "#fff",
+            pointHighlightFill: "#fff",
+            pointHighlightStroke: "rgba(220,220,220,1)",
+            data: liang2
+            }
+				]
+				}
+			} else {
+				var lineChartData = {
+					labels: day,
+					datasets: [
+						{
+							label: "My Second dataset",
+							fillColor: "rgba(151,187,205,0.2)",
+							strokeColor: "rgba(151,187,205,1)",
+							pointColor: "rgba(151,187,205,1)",
+							pointStrokeColor: "#fff",
+							pointHighlightFill: "#fff",
+							pointHighlightStroke: "rgba(151,187,205,1)",
+							data: liang
 					}
 				]
-			}
+				}
+			};
 			var box = document.createElement('div');
 			var tH1 = document.createElement('h1');
 			var srCanvas = document.createElement('canvas');
 			box.className = 'box'
-			tH1.innerHTML = title.toString().slice(5) + '月<small>微博视频播放量</small>';
+			tH1.innerHTML = title.toString().slice(5) + '月<small>电台播放数</small>';
 			box.appendChild(tH1)
 			box.appendChild(srCanvas);
 			boody.appendChild(box);
@@ -97,7 +126,7 @@
 			});
 		}
 		for (var i = 0; i < myData.length; i++) {
-			myChart(i, my_data[myData[i]].day, my_data[myData[i]].liang, myData[i])
+			myChart(i, my_data[myData[i]].day, my_data[myData[i]].liang, myData[i], my_data[myData[i]].liang2)
 		}
 	</script>
 </body>

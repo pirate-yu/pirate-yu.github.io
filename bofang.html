@@ -1,15 +1,13 @@
 <!DOCTYPE html>
 <html lang="zh">
-
 <head>
 	<meta charset="UTF-8">
-	<title>麦论讲股</title>
+	<title>微博点击率</title>
 	<style>
 		body {
 			background-color: #f2f1ee;
 			font-family: "Microsoft Yahei", sans-serif, Roboto, arial, "Hiragino Sans GB";
 		}
-		
 		#myChart {
 			margin: 0 auto;
 			width: 1090px;
@@ -18,26 +16,21 @@
 			box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 			padding: 0 20px;
 		}
-		
 		.box {
 			border-bottom: 1px solid #ededed;
 			padding: 10px 0 30px;
 		}
-		
 		small {
 			margin-left: 10px;
 			color: #666;
 			font-weight: normal;
 		}
-		
 		h1 {
 			letter-spacing: 1.5px;
 		}
-		
 		.btn_top {
 			padding: 15px;
 		}
-		
 		.btn_top a {
 			display: inline-block;
 			padding: 15px 25px;
@@ -49,7 +42,6 @@
 			border-radius: 10px;
 			border: 1px solid #ff7800;
 		}
-		
 		.btn_top a.active,
 		.btn_top a:hover {
 			background-color: #ff7800;
@@ -59,14 +51,13 @@
 	</style>
 	<script src="Chart.min.js"></script>
 </head>
-
 <body>
 	<div id='myChart'>
 		<div class="btn_top">
-			<a class="active" href="http://tocss.com/">麦论讲股</a><a href="http://tocss.com/diantai.html">电台</a><a href="http://tocss.com/bofang.html">播放人数</a>
+			<a href="http://tocss.com/">麦论讲股</a><a href="http://tocss.com/diantai.html">电台</a><a class="active" href="http://tocss.com/bofang.html">播放人数</a>
 		</div>
 	</div>
-	<script type="text/javascript" src="http://s0.caigengtan.com/campaign/2014/dianji_data/day.js"></script>
+	<script type="text/javascript" src="http://s0.caigengtan.com/campaign/2014/dianji_data/bofang.js"></script>
 	<script>
 		var myData = function () {
 			var dataBox = [];
@@ -125,12 +116,12 @@
 			var tH1 = document.createElement('h1');
 			var srCanvas = document.createElement('canvas');
 			box.className = 'box'
-			tH1.innerHTML = title.toString().slice(5) + '月<small>麦论讲股播放数</small>';
+			tH1.innerHTML = title.toString().slice(5) + '月<small>微博播放人数对比</small>';
 			box.appendChild(tH1)
 			box.appendChild(srCanvas);
 			boody.appendChild(box);
 			var ctx = srCanvas.getContext("2d");
-			window.myLine = new Chart(ctx).Line(lineChartData, {
+			window.myLine = new Chart(ctx).Bar(lineChartData, {
 				responsive: true
 			});
 		}
@@ -139,5 +130,4 @@
 		}
 	</script>
 </body>
-
 </html>
