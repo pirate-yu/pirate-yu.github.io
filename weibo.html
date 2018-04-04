@@ -3,7 +3,7 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>麦论讲股</title>
+	<title>微博视频分析</title>
 	<style>
 		body {
 			background-color: #f2f1ee;
@@ -56,28 +56,31 @@
 			color: #fff;
 			text-shadow: 1px 2px 3px #ab3c00;
 		}
-		.fangkuai1{
+		
+		.fangkuai1 {
 			display: inline-block;
 			width: 16px;
 			height: 16px;
-			background-color: rgba(151,187,205,0.2);
-			border: 3px solid rgba(151,187,205,1);
+			background-color: rgba(151, 187, 205, 0.2);
+			border: 3px solid rgba(151, 187, 205, 1);
 			margin-right: 5px;
 			position: relative;
 			margin-bottom: -5px;
 		}
-		.fangkuai2{
+		
+		.fangkuai2 {
 			display: inline-block;
 			width: 16px;
 			height: 16px;
-			background-color: rgba(220,220,220,0.2);
-			border: 3px solid rgba(220,220,220,1);
+			background-color: rgba(220, 220, 220, 0.2);
+			border: 3px solid rgba(220, 220, 220, 1);
 			margin-left: 30px;
 			margin-right: 5px;
 			position: relative;
 			margin-bottom: -5px;
 		}
-		.fangkuai{
+		
+		.fangkuai {
 			line-height: 30px;
 			padding-top: 30px;
 		}
@@ -88,10 +91,10 @@
 <body>
 	<div id='myChart'>
 		<div class="btn_top">
-			<a class="active" href="http://tocss.com/">财耕谈点击率</a><a class= href="http://tocss.com/weibo.html">微博点击率</a>
+			<a href="http://tocss.com/">财耕谈点击率</a><a class="active" href="http://tocss.com/weibo.html">微博点击率</a>
 		</div>
 	</div>
-	<script type="text/javascript" src="http://s0.caigengtan.com/campaign/2014/dianji_data/day.js"></script>
+	<script type="text/javascript" src="weibo.js"></script>
 	<script>
 		var myData = function() {
 			var dataBox = [];
@@ -101,22 +104,37 @@
 			return dataBox;
 		}().reverse();
 		var boody = document.getElementById('myChart');
-		var myChart = function(day, liang, title, liang2) {
+		var myChart = function(day, liang4, title, liang1, liang2, liang3) {
 			var lineChartData = {
 				labels: day,
 				datasets: [{
 						type:'line',
-						label: "麦论讲股",
-						borderColor: '#49b5f3',
+						label: "播放",
+						borderColor: '#fd9e70',
 						fill: false,
-						data: liang,
+						data: liang4,
+					lineTension: 0
 					},
 					{
-						type:'line',
-						label: "电台录音",
-						borderColor: '#eb757a',
+						type:'bar',
+						label: "转发",
+						backgroundColor: '#eb757a',
+						fill: false,
+						data: liang1
+					},
+					{
+						type:'bar',
+						label: "评论",
+						backgroundColor: '#8cd2ce',
 						fill: false,
 						data: liang2
+					},
+					{
+						type:'bar',
+						label: "点赞",
+						backgroundColor: '#7ac8e9',
+						fill: false,
+						data: liang3
 					}
 				]
 			};
@@ -130,12 +148,12 @@
 			boody.appendChild(box);
 			var ctx = srCanvas.getContext("2d");
 			window.myBar = new Chart(ctx, {
-				type: 'line',
+				type: 'bar',
 				data: lineChartData,
 				options: {
 					title: {
 						display: true,
-						text: '财耕谈视频播放量'
+						text: '微博-视频总体分析'
 					},
 					tooltips: {
 						mode: 'index',
@@ -145,13 +163,16 @@
 					scales: {
 						xAxes: [{
 							stacked: true,
+						}],
+						yAxes: [{
+							stacked: true
 						}]
 					}
 				}
 			});
 		}
 		for (var i = 0; i < myData.length; i++) {
-			myChart(my_data[myData[i]].day, my_data[myData[i]].liang, myData[i], my_data[myData[i]].liang2)
+			myChart(my_data[myData[i]].day, my_data[myData[i]].liang4, myData[i], my_data[myData[i]].liang1, my_data[myData[i]].liang2, my_data[myData[i]].liang3)
 		}
 	</script>
 </body>
